@@ -11,5 +11,5 @@ export async function fetchImages(searchQuery, currentPage) {
   });
 
   const response = await axios.get(`https://pixabay.com/api/?${params}`);
-  return response.data.hits;
+  return response.data;
 }

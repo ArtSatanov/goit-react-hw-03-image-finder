@@ -7,6 +7,7 @@ export class App extends Component {
   state = {
     searchQuery: '',
     gallaryItems: [],
+    error: false,
     page: 1,
     loading: false,
   };
@@ -28,17 +29,19 @@ export class App extends Component {
       prevState.page !== this.state.page
     ) {
       try {
+        this.setState({ loading: true });
         const images = await fetchImages(
           this.state.searchQuery,
           this.state.page
         );
-        console.log(images);
+
         this.setState({
-          gallaryItems: [...images],
+          gallaryItems: [...images.hits],
         });
       } catch (error) {
-        console.error(error);
+        this.setState({ error: true });
       } finally {
+        this.setState({ loading: false });
       }
     }
   }
@@ -47,7 +50,9 @@ export class App extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.handleSubmit} />
-        <ImageGallery images={this.state.gallaryItems} />
+        {this.state.gallaryItems.length > 0 && (
+          <ImageGallery images={this.state.gallaryItems} />
+        )}
       </div>
     );
   }
