@@ -1,21 +1,25 @@
 import { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
+// import { fetchImages } from '../api';
 
 export class App extends Component {
   state = {
-    filter: '',
+    searchQuery: '',
+    gallaryItems: [],
+    page: 1,
   };
 
-  componentDidMount() {}
-
-  componentDidUpdate() {}
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(event);
+  };
 
   render() {
     return (
       <div>
-        <Searchbar />
-        <ImageGallery />
+        <Searchbar onSubmit={this.handleSubmit} />
+        <ImageGallery arrayResponse={[]} />
       </div>
     );
   }

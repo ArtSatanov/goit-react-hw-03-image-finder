@@ -2,7 +2,7 @@ import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 
 export const ImageGallery = ({ arrayResponse }) => {
   return (
-    <ul class="gallery">
+    <ul className="gallery">
       {arrayResponse.map(elem => {
         <ImageGalleryItem
           key={elem.id}
