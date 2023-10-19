@@ -13,7 +13,13 @@ export class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(event);
+    const myFormData = new FormData(event.currentTarget);
+    const searchData = Object.fromEntries(myFormData);
+    this.setState({
+      searchQuery: searchData.searchQuery,
+      page: 1,
+      gallaryItems: [],
+    });
   };
 
   render() {
