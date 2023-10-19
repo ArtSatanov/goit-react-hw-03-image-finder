@@ -8,6 +8,7 @@ export class App extends Component {
     searchQuery: '',
     gallaryItems: [],
     page: 1,
+    loading: false,
   };
 
   handleSubmit = event => {
