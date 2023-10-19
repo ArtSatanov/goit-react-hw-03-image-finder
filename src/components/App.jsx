@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-// import { fetchImages } from '../api';
+import { fetchImages } from '../api';
 
 export class App extends Component {
   state = {
@@ -22,11 +22,32 @@ export class App extends Component {
     });
   };
 
+  async componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.searchQuery !== this.state.searchQuery ||
+      prevState.page !== this.state.page
+    ) {
+      try {
+        const images = await fetchImages(
+          this.state.searchQuery,
+          this.state.page
+        );
+        console.log(images);
+        this.setState({
+          gallaryItems: [...images],
+        });
+      } catch (error) {
+        console.error(error);
+      } finally {
+      }
+    }
+  }
+
   render() {
     return (
       <div>
         <Searchbar onSubmit={this.handleSubmit} />
-        <ImageGallery arrayResponse={[]} />
+        <ImageGallery images={this.state.gallaryItems} />
       </div>
     );
   }
