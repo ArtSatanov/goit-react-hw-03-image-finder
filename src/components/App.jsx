@@ -11,6 +11,7 @@ export class App extends Component {
     error: false,
     page: 1,
     loading: false,
+    totalHits: '',
   };
 
   handleSubmit = event => {
@@ -21,13 +22,14 @@ export class App extends Component {
       searchQuery: searchData.searchQuery,
       page: 1,
       gallaryItems: [],
+      totalHits: '',
     });
   };
 
-  handleLoadMore = event => {
-    this.setState({
+  handleLoadMore = () => {
+    this.setState(prevState => ({
       page: prevState.page + 1,
-    });
+    }));
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -43,7 +45,8 @@ export class App extends Component {
         );
 
         this.setState({
-          gallaryItems: [...images.hits],
+          gallaryItems: [...this.state.gallaryItems, ...images.hits],
+          totalHits: images.totalHits,
         });
       } catch (error) {
         this.setState({ error: true });
@@ -58,10 +61,13 @@ export class App extends Component {
       <div>
         <Searchbar onSubmit={this.handleSubmit} />
         {this.state.gallaryItems.length > 0 && (
-          <ImageGallery images={this.state.gallaryItems} />
+          <ImageGallery images={this.state.gallaryItems}/>
         )}
-        {this.state.gallaryItems.length > 0 && <Button />}
+        {if (this.state.gallaryItems.length > 0 && Number(this.state.totalHits) / 12 < this.state.page)
+        {
+          <Button OnClick={this.handleLoadMore}/>
+        }}
       </div>
     );
   }
-}
+
