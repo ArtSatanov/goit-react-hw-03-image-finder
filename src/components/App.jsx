@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api';
+import { Button } from './Button/Button';
 
 export class App extends Component {
   state = {
@@ -20,6 +21,12 @@ export class App extends Component {
       searchQuery: searchData.searchQuery,
       page: 1,
       gallaryItems: [],
+    });
+  };
+
+  handleLoadMore = event => {
+    this.setState({
+      page: prevState.page + 1,
     });
   };
 
@@ -53,6 +60,7 @@ export class App extends Component {
         {this.state.gallaryItems.length > 0 && (
           <ImageGallery images={this.state.gallaryItems} />
         )}
+        {this.state.gallaryItems.length > 0 && <Button />}
       </div>
     );
   }
