@@ -3,6 +3,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api';
 import { Button } from './Button/Button';
+import { Loader } from './Loader/Loader';
 
 export class App extends Component {
   state = {
@@ -60,14 +61,14 @@ export class App extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.handleSubmit} />
+        {this.state.loading && <Loader />}
         {this.state.gallaryItems.length > 0 && (
-          <ImageGallery images={this.state.gallaryItems}/>
+          <ImageGallery images={this.state.gallaryItems} />
         )}
-        {if (this.state.gallaryItems.length > 0 && Number(this.state.totalHits) / 12 < this.state.page)
-        {
-          <Button OnClick={this.handleLoadMore}/>
-        }}
+        {Number(this.state.totalHits) / 12 >= this.state.page && (
+          <Button OnClick={this.handleLoadMore} />
+        )}
       </div>
     );
   }
-
+}

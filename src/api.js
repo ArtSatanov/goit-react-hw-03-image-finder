@@ -6,7 +6,7 @@ export async function fetchImages(searchQuery, currentPage) {
     image_type: 'photo',
     orientation: 'horizontal',
     per_page: 12,
-    q: searchQuery,
+    q: searchQuery.trim().toLowerCase(),
     page: currentPage,
   });
 
