@@ -76,7 +76,7 @@ img {
 /*
  * Стили компонента Modal
  */
-
+/* 
 .Overlay {
   position: fixed;
   top: 0;
@@ -90,14 +90,14 @@ img {
   z-index: 1200;
 }
 
-.Modal {
-  max-width: calc(100vw - 48px);
+/* .Modal {
+  max-width: calc(100vw - 48px)
   max-height: calc(100vh - 24px);
-}
+} */
 
 /*
 * Стили компонента Buton (Load more)
-*/
+*/ */
 .Button {
   padding: 8px 16px;
   border-radius: 2px;
