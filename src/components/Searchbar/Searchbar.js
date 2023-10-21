@@ -5,6 +5,7 @@ import {
   SearchFormLabel,
   SearchFormInput,
 } from './Searchbar.styled';
+import { FontAwesomeIcon } from 'react-icons/fa';
 
 export const Searchbar = ({ onSubmit }) => {
   return (
@@ -15,6 +16,7 @@ export const Searchbar = ({ onSubmit }) => {
         }}
       >
         <SearchFormButton type="submit">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
           <SearchFormLabel className="button-label">Search</SearchFormLabel>
         </SearchFormButton>
 
