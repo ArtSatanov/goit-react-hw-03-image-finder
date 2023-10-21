@@ -27,3 +27,7 @@ export const LoadMoreBtn = styled.button`
     background-color: #303f9f;
   }
 `;
+
+export const LoadMoreDiv = styled.div`
+  margin: 0 auto;
+`;
