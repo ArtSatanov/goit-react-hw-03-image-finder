@@ -1,12 +1,9 @@
-// export const ImageGalleryItem = ({ smallImg, largeImg, tags }) => {
-//   return (
-//     <li className="gallery-item" data-img={largeImg}>
-//       <img src={smallImg} alt={tags} />
-//     </li>
-//   );
-// };
 import { Component } from 'react';
 import { ModalСomponent } from '../Modal/Modal';
+import {
+  ImageGalleryItemLi,
+  ImageGalleryItemImage,
+} from './ImageGalleryItem.styled';
 
 export class ImageGalleryItem extends Component {
   state = {
@@ -24,8 +21,12 @@ export class ImageGalleryItem extends Component {
   render() {
     const { smallImg, largeImg, tags } = this.props;
     return (
-      <li className="gallery-item">
-        <img src={smallImg} alt={tags} onClick={() => this.openModal()} />
+      <ImageGalleryItemLi>
+        <ImageGalleryItemImage
+          src={smallImg}
+          alt={tags}
+          onClick={() => this.openModal()}
+        />
         <div></div>
         <ModalСomponent
           isModalOpen={this.state.isModalOpen}
@@ -33,7 +34,7 @@ export class ImageGalleryItem extends Component {
           altModal={tags}
           closeModal={this.closeModal}
         />
-      </li>
+      </ImageGalleryItemLi>
     );
   }
 }
