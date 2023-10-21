@@ -4,6 +4,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
+import { Layout } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -59,7 +60,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <Layout>
         <Searchbar onSubmit={this.handleSubmit} />
         {this.state.loading && <Loader />}
         {this.state.gallaryItems.length > 0 && (
@@ -68,7 +69,7 @@ export class App extends Component {
         {Number(this.state.totalHits) / 12 >= this.state.page && (
           <Button OnClick={this.handleLoadMore} />
         )}
-      </div>
+      </Layout>
     );
   }
 }
