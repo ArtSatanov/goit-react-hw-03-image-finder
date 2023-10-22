@@ -16,12 +16,9 @@ export class App extends Component {
     totalHits: '',
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const myFormData = new FormData(event.currentTarget);
-    const searchData = Object.fromEntries(myFormData);
+  handleSubmit = searchQuery => {
     this.setState({
-      searchQuery: searchData.searchQuery,
+      searchQuery,
       page: 1,
       gallaryItems: [],
       totalHits: '',
